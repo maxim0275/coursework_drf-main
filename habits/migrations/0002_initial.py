@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -18,11 +17,15 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='habit',
             name='owner',
-            field=models.ForeignKey(help_text='Укажите владельца привычки', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Владелец привычки'),
+            field=models.ForeignKey(help_text='Укажите владельца привычки',
+                                    on_delete=django.db.models.deletion.CASCADE,
+                                    to=settings.AUTH_USER_MODEL, verbose_name='Владелец привычки'),
         ),
         migrations.AddField(
             model_name='habit',
             name='related_habit',
-            field=models.ForeignKey(blank=True, help_text='Укажите связанную привычку', null=True, on_delete=django.db.models.deletion.SET_NULL, to='habits.habit', verbose_name='Связанная привычка'),
+            field=models.ForeignKey(blank=True, help_text='Укажите связанную привычку', null=True,
+                                    on_delete=django.db.models.deletion.SET_NULL, to='habits.habit',
+                                    verbose_name='Связанная привычка'),
         ),
     ]
