@@ -141,10 +141,10 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/lsm-system-drf:${{ github.sha }} .
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/coursework_drf-main:${{ github.sha }} .
 
       - name: Push Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/lsm-system-drf:${{ github.sha }}
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/coursework_drf-main:${{ github.sha }}
 
   deploy:
     needs: build
@@ -199,7 +199,7 @@ jobs:
           echo "Подготовка к деплою..."
           echo "DOCKER_USER: $DOCKER_USER"
           echo "IMAGE_TAG: $IMAGE_TAG"
-          echo "Полное имя образа: $DOCKER_USER/lsm-system-drf:$IMAGE_TAG"
+          echo "Полное имя образа: $DOCKER_USER/coursework_drf-main:$IMAGE_TAG"
           
           # Создаем deploy.sh с подстановкой переменных
           cat << EOF > deploy.sh
@@ -207,14 +207,14 @@ jobs:
           set -ex
           DOCKER_USER='$DOCKER_USER'
           IMAGE_TAG='$IMAGE_TAG'
-          echo "Попытка загрузки образа: \${DOCKER_USER}/lsm-system-drf:\${IMAGE_TAG}"
-          docker pull \${DOCKER_USER}/lsm-system-drf:\${IMAGE_TAG} || {
+          echo "Попытка загрузки образа: \${DOCKER_USER}/coursework_drf-main:\${IMAGE_TAG}"
+          docker pull \${DOCKER_USER}/coursework_drf-main:\${IMAGE_TAG} || {
             echo "Не удалось загрузить образ, пробуем latest..."
-            docker pull \${DOCKER_USER}/lsm-system-drf:latest
+            docker pull \${DOCKER_USER}/coursework_drf-main:latest
           }
-          docker stop lsm-system-drf || true
-          docker rm lsm-system-drf || true
-          docker run -d --name lsm-system-drf -p 80:8000 \\
+          docker stop coursework_drf-main || true
+          docker rm coursework_drf-main || true
+          docker run -d --name coursework_drf-main -p 80:8000 \\
             -e SECRET_KEY='$SECRET_KEY' \\
             -e POSTGRES_DB='$POSTGRES_DB' \\
             -e POSTGRES_USER='$POSTGRES_USER' \\
@@ -224,7 +224,7 @@ jobs:
             -e CELERY_BROKER_URL='redis://redis:6379/0' \\
             -e STRIPE_API_KEY='$STRIPE_API_KEY' \\
             -e STRIPE_PUBLIC_KEY='$STRIPE_PUBLIC_KEY' \\
-            \${DOCKER_USER}/lsm-system-drf:\${IMAGE_TAG}
+            \${DOCKER_USER}/coursework_drf-main:\${IMAGE_TAG}
           EOF
           
           echo "Содержимое deploy.sh:"
