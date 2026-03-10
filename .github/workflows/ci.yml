@@ -120,7 +120,7 @@ jobs:
     - name: Install dependencies with Poetry
       run: |
         poetry config virtualenvs.in-project true
-        poetry install --no-interaction --no-ansi
+        poetry install --no-interaction --no-ansi --no-root
     - name: Run migrations
       run: poetry run python manage.py migrate
 
