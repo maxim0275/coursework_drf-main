@@ -78,9 +78,9 @@ jobs:
           - 6379:6379
 
     steps:
-    - name: Create role root
-      run: |
-        psql -c "CREATE ROLE root SUPERUSER"
+#    - name: Create role root
+#      run: |
+#        psql -c "CREATE ROLE root SUPERUSER"
 
     - uses: actions/checkout@v3
 
