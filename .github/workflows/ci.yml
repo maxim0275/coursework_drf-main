@@ -31,25 +31,6 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:14
-        env:
-          POSTGRES_USER: super
-          POSTGRES_PASSWORD: super
-          POSTGRES_DB: habits
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      redis:
-        image: redis:6
-        ports:
-          - 6379:6379
-
     steps:
       - uses: actions/checkout@v3
 
