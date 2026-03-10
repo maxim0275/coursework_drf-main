@@ -12,6 +12,6 @@ class UserAdmin(admin.ModelAdmin):
         "phone",
         "tg_nick",
         "city",
-    )
+        )
     list_filter = ("city",)
     search_fields = ("email", "phone", "tg_nick")
