@@ -80,7 +80,7 @@ jobs:
     steps:
     - name: Create role root
       run: |
-        psql CREATE ROLE root SUPERUSER
+        psql -c "CREATE ROLE root SUPERUSER"
 
     - uses: actions/checkout@v3
 
