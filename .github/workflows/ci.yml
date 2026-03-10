@@ -9,8 +9,8 @@ env:
 
   # Настройки базы данных
   POSTGRES_DB: habits
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: postgres
+  POSTGRES_USER: super
+  POSTGRES_PASSWORD: super
   DB_HOST: localhost
   DB_PORT: 5432
 
@@ -35,8 +35,8 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: super
+          POSTGRES_PASSWORD: super
           POSTGRES_DB: habits
         ports:
           - 5432:5432
@@ -80,8 +80,8 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: super
+          POSTGRES_PASSWORD: super
           POSTGRES_DB: habits
         ports:
           - 5432:5432
@@ -190,8 +190,8 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           POSTGRES_DB: habits
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: super
+          POSTGRES_PASSWORD: super
           DB_PORT: 5432
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
