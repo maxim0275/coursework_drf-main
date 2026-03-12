@@ -1,4 +1,4 @@
-FROM alvaroalm3ida/python3.13 as builder
+FROM python:3.13-alpine
 
 WORKDIR /app
 
