@@ -48,7 +48,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry config virtualenvs.in-project true
+          poetry config virtualenvs.create false
           poetry install --no-interaction --no-ansi --no-root
 #      - name: Run flake8
 #        run: |
@@ -61,8 +61,8 @@ jobs:
       postgres:
         image: postgres:17
         env:
-          POSTGRES_USER: super
-          POSTGRES_PASSWORD: super
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: habits
         ports:
           - 5432:5432
