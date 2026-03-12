@@ -6,7 +6,7 @@ COPY pyproject.toml poetry.lock ./
 
 RUN pip install poetry
 
-RUN poetry install --no-dev # Установка без зависимостей для разработки
+RUN poetry install --no-dev --no-root # Установка без зависимостей для разработки
 
 COPY . .
 
