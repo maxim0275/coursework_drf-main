@@ -6,7 +6,7 @@ COPY pyproject.toml poetry.lock ./
 
 RUN pip install poetry
 
-RUN poetry install --no-interaction --no-ansi --no-root
+RUN poetry install --no-interaction --no-ansi --no-root --verbose
 
 COPY . .
 

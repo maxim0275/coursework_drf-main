@@ -112,7 +112,8 @@ jobs:
           poetry-${{ runner.os }}-
     - name: Install dependencies with Poetry
       run: |
-        poetry config virtualenvs.in-project true
+    #   poetry config virtualenvs.in-project true
+        poetry config virtualenvs.create false
         poetry install --no-interaction --no-ansi --no-root
     - name: Run migrations
       run: poetry run python manage.py migrate
