@@ -17,7 +17,6 @@ dependencies = [
     "celery (>=5.6.2,<6.0.0)",
     "flake8 (>=7.3.0,<8.0.0)",
     "django-cors-headers (>=4.9.0,<5.0.0)",
-    "psycopg2 (>=2.9.11,<3.0.0)",
     "telebot (>=0.0.5,<0.0.6)",
     "rest-framework-simplejwt (>=0.0.2,<0.0.3)",
     "djangorestframework-simplejwt (>=5.5.1,<6.0.0)",

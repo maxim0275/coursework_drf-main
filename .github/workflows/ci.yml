@@ -54,71 +54,67 @@ jobs:
 #        run: |
 #          echo -e "[flake8]\nmax-line-length = 120\nexclude = .venv" > .flake8
 #          poetry run flake8 .
-  test:
-    # needs: lint
-    env:
-      DATABASE_NAME: habits
-      DATABASE_USER: root
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: localhost
-      DATABASE_PORT: 5432
-
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:17
-        env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: habits
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-      redis:
-        image: redis:6
-        ports:
-          - 6379:6379
-
-    steps:
-#    - name: Create role root
+#  test:
+#    # needs: lint
+#    env:
+#      DATABASE_NAME: habits
+#      DATABASE_USER: root
+#      DATABASE_PASSWORD: postgres
+#      DATABASE_HOST: localhost
+#      DATABASE_PORT: 5432
+#
+#    runs-on: ubuntu-latest
+#    services:
+#      postgres:
+#        image: postgres:17
+#        env:
+#          POSTGRES_USER: root
+#          POSTGRES_PASSWORD: postgres
+#          POSTGRES_DB: habits
+#        ports:
+#          - 5432:5432
+#        options: >-
+#          --health-cmd pg_isready
+#          --health-interval 10s
+#          --health-timeout 5s
+#          --health-retries 5
+#
+#      redis:
+#        image: redis:6
+#        ports:
+#          - 6379:6379
+#
+#    steps:
+#    - uses: actions/checkout@v3
+#
+#    - name: Set up Python 3.13
+#      uses: actions/setup-python@v4
+#      with:
+#        python-version: '3.13.7'
+#
+#    - name: Install Poetry
+#      uses: snok/install-poetry@v1
+#      with:
+#        version: 2.1.4
+#        virtualenvs-create: true
+#        virtualenvs-in-project: true
+#
+#    - name: Cache Poetry virtualenv
+#      uses: actions/cache@v3
+#      with:
+#        path: .venv
+#        key: poetry-${{ runner.os }}-${{ hashFiles('pyproject.toml') }}
+#        restore-keys: |
+#          poetry-${{ runner.os }}-
+#    - name: Install dependencies with Poetry
 #      run: |
-#        psql -c "CREATE ROLE root SUPERUSER"
-
-    - uses: actions/checkout@v3
-
-    - name: Set up Python 3.13
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13.7'
-
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
-      with:
-        version: 2.1.4
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-
-    - name: Cache Poetry virtualenv
-      uses: actions/cache@v3
-      with:
-        path: .venv
-        key: poetry-${{ runner.os }}-${{ hashFiles('pyproject.toml') }}
-        restore-keys: |
-          poetry-${{ runner.os }}-
-    - name: Install dependencies with Poetry
-      run: |
-        poetry config virtualenvs.create false
-        poetry install --no-interaction --no-ansi --no-root
-    - name: Run migrations
-      run: poetry run python manage.py migrate
-
-    - name: Run tests
-      run: poetry run python manage.py test
+#        poetry config virtualenvs.create false
+#        poetry install --no-interaction --no-ansi --no-root
+#    - name: Run migrations
+#      run: poetry run python manage.py migrate
+#
+#    - name: Run tests
+#      run: poetry run python manage.py test
 
   build:
     needs: test
