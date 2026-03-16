@@ -22,7 +22,8 @@ dependencies = [
     "djangorestframework-simplejwt (>=5.5.1,<6.0.0)",
     "pillow (>=12.1.1,<13.0.0)",
     "autopep8 (>=2.3.2,<3.0.0)",
-    "psycopg2-binary (>=2.9.11,<3.0.0)"
+    "psycopg[binary] (>=3.3.3,<4.0.0)",
+    "redis (>=7.3.0,<8.0.0)"
 ]
 
 
