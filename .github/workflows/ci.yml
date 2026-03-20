@@ -57,6 +57,13 @@ jobs:
   test:
 #    needs: lint
     runs-on: ubuntu-latest
+
+    env:
+      POSTGRES_USER: ${{ vars.POSTGRES_USER }}
+      POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
+      POSTGRES_DB: ${{ vars.POSTGRES_DB }}
+      POSTGRES_PORT: ${{ vars.POSTGRES_PORT }}
+
     services:
       postgres:
         image: postgres:17
@@ -104,6 +111,7 @@ jobs:
         poetry config virtualenvs.create false
         poetry install --no-interaction --no-ansi --no-root
     - name: Run migrations
+
       run: poetry run python manage.py migrate
 
     - name: Run tests
