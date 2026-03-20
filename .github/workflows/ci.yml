@@ -116,7 +116,7 @@ jobs:
         POSTGRES_USER: ${{ vars.POSTGRES_USER }}
         POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
         POSTGRES_DB: ${{ vars.POSTGRES_DB }}
-        POSTGRES_HOST: db
+        POSTGRES_HOST: localhost
 
       run: poetry run python manage.py migrate
 
