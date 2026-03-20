@@ -29,41 +29,41 @@ env:
   EMAIL_USE_SSL: "False"
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python 3.13.7
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13.7'
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: 2.1.4
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-
-      - name: Install dependencies
-        run: |
-          poetry config virtualenvs.create false
-          poetry install --no-interaction --no-ansi --no-root
+#  lint:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#
+#      - name: Set up Python 3.13.7
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.13.7'
+#
+#      - name: Install Poetry
+#        uses: snok/install-poetry@v1
+#        with:
+#          version: 2.1.4
+#          virtualenvs-create: true
+#          virtualenvs-in-project: true
+#
+#      - name: Install dependencies
+#        run: |
+#          poetry config virtualenvs.create false
+#          poetry install --no-interaction --no-ansi --no-root
 #      - name: Run flake8
 #        run: |
 #          echo -e "[flake8]\nmax-line-length = 120\nexclude = .venv" > .flake8
 #          poetry run flake8 .
   test:
-    needs: lint
+#    needs: lint
     runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:17
         env:
-          POSTGRES_USER: "$POSTGRES_USER"
-          POSTGRES_PASSWORD: "$POSTGRES_PASSWORD"
-          POSTGRES_DB: "$POSTGRES_DB"
+          POSTGRES_USER: ${{ POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ POSTGRES_DB }}
         ports:
           - 5432:5432
         options: >-
