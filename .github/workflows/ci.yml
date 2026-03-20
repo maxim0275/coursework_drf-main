@@ -203,7 +203,7 @@ jobs:
           }
           docker stop coursework_drf-main || true
           docker rm coursework_drf-main || true
-          docker run -d --name coursework_drf-main -p 8000:8000 \\
+          docker run -d --name coursework_drf-main --network coursework_drf-main_default -p 8000:8000 \\
             -e SECRET_KEY='$SECRET_KEY' \\
             -e POSTGRES_DB='$POSTGRES_DB' \\
             -e POSTGRES_USER='$POSTGRES_USER' \\
