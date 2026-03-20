@@ -66,7 +66,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:17
+        image: postgres
         env:
           POSTGRES_USER: ${{ vars.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
@@ -116,9 +116,6 @@ jobs:
         POSTGRES_USER: ${{ vars.POSTGRES_USER }}
         POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
         POSTGRES_DB: ${{ vars.POSTGRES_DB }}
-
-        run: |
-          echo POSTGRES_USER
 
       run: poetry run python manage.py migrate
 
