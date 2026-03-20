@@ -110,6 +110,11 @@ jobs:
       run: |
         poetry config virtualenvs.create false
         poetry install --no-interaction --no-ansi --no-root
+      env:
+        POSTGRES_USER: ${{ vars.POSTGRES_USER }}
+        POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
+        POSTGRES_DB: ${{ vars.POSTGRES_DB }}
+
     - name: Run migrations
 
       run: poetry run python manage.py migrate
