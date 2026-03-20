@@ -178,7 +178,7 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          POSTGRES_DB: habits
+          POSTGRES_DB: postgres
           POSTGRES_USER: super
           POSTGRES_PASSWORD: super
           POSTGRES_PORT: 5432
