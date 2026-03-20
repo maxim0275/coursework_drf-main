@@ -8,11 +8,11 @@ env:
   DEBUG: "False"
 
   # Настройки базы данных
-  POSTGRES_DB: habits
-  POSTGRES_USER: root
-  POSTGRES_PASSWORD: postgres
-  DB_HOST: localhost
-  DB_PORT: 5432
+  POSTGRES_DB: postgres
+  POSTGRES_USER: super
+  POSTGRES_PASSWORD: super
+  POSTGRES_PORT: 5432
+
 
   # Redis/Celery
   REDIS_HOST: localhost
@@ -56,21 +56,14 @@ jobs:
 #          poetry run flake8 .
   test:
     needs: lint
-    env:
-      DATABASE_NAME: habits
-      DATABASE_USER: root
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: localhost
-      DATABASE_PORT: 5432
-
     runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:17
         env:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: habits
+          POSTGRES_USER: ${POSTGRES_USER}
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+          POSTGRES_DB: ${POSTGRES_DB}
         ports:
           - 5432:5432
         options: >-
@@ -117,7 +110,7 @@ jobs:
       run: poetry run python manage.py test
 
   build:
-#    needs: test
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
