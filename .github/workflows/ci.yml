@@ -181,7 +181,7 @@ jobs:
           POSTGRES_DB: habits
           POSTGRES_USER: super
           POSTGRES_PASSWORD: super
-          DB_PORT: 5432
+          POSTGRES_PORT: 5432
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
         run: |
@@ -208,8 +208,8 @@ jobs:
             -e POSTGRES_DB='$POSTGRES_DB' \\
             -e POSTGRES_USER='$POSTGRES_USER' \\
             -e POSTGRES_PASSWORD='$POSTGRES_PASSWORD' \\
-            -e DB_HOST='db' \\
-            -e DB_PORT='$DB_PORT' \\
+            -e POSTGRES_HOST='db' \\
+            -e POSTGRES_PORT='$POSTGRES_PORT' \\
             -e CELERY_BROKER_URL='redis://redis:6379/0' \\
             -e STRIPE_API_KEY='$STRIPE_API_KEY' \\
             -e STRIPE_PUBLIC_KEY='$STRIPE_PUBLIC_KEY' \\
